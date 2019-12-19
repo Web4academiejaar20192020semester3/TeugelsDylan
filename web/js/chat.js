@@ -1,5 +1,16 @@
 var firstTime = 1;
 
+function addEvent(){
+    var input = document.getElementById("chatText");
+    input.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+            event.preventDefault();
+            document.getElementById("sendButton").click();
+
+        }
+    });
+}
+
 function startNewChat(friend){
     var receiver = friend;
     $.ajax({
@@ -23,6 +34,7 @@ function startNewChat(friend){
                 }
                 if (window.getComputedStyle(document.getElementById("chat-section")).display === "none") {
                     toggleChatSection();
+                    addEvent();
                 }
 
 
@@ -84,32 +96,34 @@ function send() {
     var message = document.getElementById("chatText").value;
     var messages = document.getElementById("messages");
 
-    $.ajax({
-        type: "POST",
-        url: "Controller?action=SendMessage",
-        data: {
-            sender: document.getElementById("sessionuser").value,
-            receiver: document.getElementById("receiveruser").value,
-            message: message
-        },
-        dataType: "json",
-        success: function (json) {
-            messages.innerHTML += "<div class=\"d-flex justify-content-end mb-4 message\">\n" +
-                "                        <div class=\"msg_cotainer_send\">\n" +
-                "                            " + message + "\n" +
-                "                            <span class=\"msg_time_send\">You</span>\n" +
-                "                        </div>\n" +
-                "                        <div class=\"img_cont_msg\">\n" +
-                "                            <img src=\"https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg\" class=\"rounded-circle user_img_msg\">\n" +
-                "                        </div>\n" +
-                "                    </div>";
-            document.getElementById("chatText").value = "";
-            scrollToBottom();
-        },
-        error: function () {
-            alert("failed sending message");
-        }
-    })
+    if(message.trim().length > 0){
+        $.ajax({
+            type: "POST",
+            url: "Controller?action=SendMessage",
+            data: {
+                sender: document.getElementById("sessionuser").value,
+                receiver: document.getElementById("receiveruser").value,
+                message: message
+            },
+            dataType: "json",
+            success: function (json) {
+                messages.innerHTML += "<div class=\"d-flex justify-content-end mb-4 message\">\n" +
+                    "                        <div class=\"msg_cotainer_send\">\n" +
+                    "                            " + message + "\n" +
+                    "                            <span class=\"msg_time_send\">You</span>\n" +
+                    "                        </div>\n" +
+                    "                        <div class=\"img_cont_msg\">\n" +
+                    "                            <img src=\"https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg\" class=\"rounded-circle user_img_msg\">\n" +
+                    "                        </div>\n" +
+                    "                    </div>";
+                document.getElementById("chatText").value = "";
+                scrollToBottom();
+            },
+            error: function () {
+                alert("failed sending message");
+            }
+        })
+    }
 }
 
 function scrollToBottom() {

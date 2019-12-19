@@ -36,8 +36,8 @@ function getDataGetFriends(){
                    "                            <div class=\"user_info\">\n" +
                    "                                <span>" + friend.firstName + " " + friend.lastName +  "</span>\n" +
                    "                                <p>" + friend.status + "</p>\n" +
-                   "                                <button onclick='getUserInfo(\"" + friend.userId + "\")'>Show Info</button>\n" +
-                   "                                <button style='margin: 5px' onclick='startNewChat(\"" + friend.userId + "\")'>Start Chat</button>\n" +
+                   "                                <button class=\"myButton\" onclick='getUserInfo(\"" + friend.userId + "\")'>Show Info</button>\n" +
+                   "                                <button class=\"myButton\" style='margin: 5px' onclick='startNewChat(\"" + friend.userId + "\")'>Open Chat</button>\n" +
                    "                                <input type='hidden' id='receiverId' value='"+ friend.userId + "'>" +
                    "                            </div>\n" +
                    "                        </div>\n" +

@@ -153,6 +153,7 @@ body,html{
     background-color: #82ccdd;
     padding: 10px;
     position: relative;
+    max-width: 50%;
 }
 .msg_cotainer_send{
     margin-top: auto;
@@ -162,6 +163,7 @@ body,html{
     background-color: #78e08f;
     padding: 10px;
     position: relative;
+    max-width: 50%;
 }
 .msg_time{
     position: absolute;
@@ -238,3 +240,32 @@ body,html{
     cursor: pointer;
 
 }
+
+.myMargin{
+    margin: 10px;
+}
+
+.myButton {
+    box-shadow: 0px 10px 14px -7px #3e7327;
+    background: #77b55a linear-gradient(to bottom, #77b55a 5%, #72b352 100%);
+    border-radius:4px;
+    border:1px solid #4b8f29;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:13px;
+    font-weight:bold;
+    padding:6px 12px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px #5b8a3c;
+}
+.myButton:hover {
+    background: #72b352 linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
+}
+.myButton:active {
+    position:relative;
+    top:1px;
+}
+
+

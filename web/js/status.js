@@ -24,6 +24,7 @@ function setStatus(){
     setStatusRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     setStatusRequest.send(info);
     setStatusRequest.onreadystatechange = getDataSetStatus;
+    setStatusToggle();
 }
 
 function getDataSetStatus() {
@@ -38,4 +39,9 @@ function getUserInfo(friend){
     $.get("Controller?action=GetUserInfo", {userInfo: friend}, function (data) {
         alert(JSON.stringify(data));
     })
+}
+
+function setStatusToggle(){
+    $("#setStatusButton").toggle('hidden');
+    $("#setStatusInput").toggle('hidden');
 }

@@ -28,24 +28,20 @@
     <div class="row justify-content-center h-100">
         <div class="col-md-4 col-xl-3 chat"><div class="card mb-sm-3 mb-md-0 contacts_card">
             <!-- USER SECTION -->
-            <div class="d-flex bd-highlight">
+            <div class="d-flex bd-highlight myMargin">
                 <div class="img_cont">
                     <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
                     <span class="online_icon"></span>
                 </div>
-                <c:choose>
-                    <c:when test="${user == null}">
-                        <meta http-equiv = "refresh" content = "3; url = https://www.qries.com" />
-                    </c:when>
-                </c:choose>
     <div class="user_info">
                     <span>${user.getFirstName()}</span>
                     <p id="status">${user.getStatus()}</p>
-                    <button onclick="getUserInfo('${user.getUserId()}')">Show Info</button>
+                    <button class="myButton" onclick="getUserInfo('${user.getUserId()}')">Show Info</button>
                 </div>
             </div>
             <!-- SET STATUS -->
-            <div class="card-header">
+            <button class="myButton myMargin" onclick="setStatusToggle()" id="setStatusButton">Set Status</button>
+            <div class="card-header hidden" id="setStatusInput">
                 <div class="input-group">
                     <input type="text" placeholder="Set new status" id="newStatus" class="form-control search">
                     <div class="input-group-prepend">
@@ -54,7 +50,7 @@
                 </div>
             </div>
             <!-- ADD FRIEND -->
-            <button onclick="addFriendToggle()" id="addFriendButton">Add Friend</button>
+            <button class="myButton myMargin" onclick="addFriendToggle()" id="addFriendButton">Add Friend</button>
             <div class="card-header hidden" id="addFriendInput">
                 <div class="input-group">
                     <input type="text" placeholder="Add new friend" id="newFriend" value="" class="form-control search">
@@ -70,7 +66,7 @@
             <div class="card-footer">
                 <form method="post" action="Controller?action=LogOut">
                     <p>
-                        <input type="submit" id="logoutbutton" value="Log Out">
+                        <input class="myButton" type="submit" id="logoutbutton" value="Log Out">
                     </p>
                 </form>
             </div>
@@ -86,7 +82,6 @@
                         </div>
                         <div class="user_info">
                             <span id="chatter"></span>
-                            <p>TOTAL MESSAGES</p>
                         </div>
                         <button class="closeChatButton" onclick="toggleChatSection();">Close Chat</button>
                     </div>
@@ -96,12 +91,13 @@
                 <!--CHAT INPUT-->
                 <div class="card-footer">
                     <div class="input-group">
+                        <!--
                         <div class="input-group-append">
                             <span class="input-group-text attach_btn"><i class="fas fa-paperclip"></i></span>
-                        </div>
-                        <textarea name="" id="chatText" class="form-control type_msg" placeholder="Type your message..."></textarea>
+                        </div>-->
+                        <input name="" id="chatText" class="form-control type_msg" placeholder="Type your message...">
                         <div class="input-group-append">
-                            <button class="input-group-text send_btn" type="submit" onclick="send();"><i class="fas fa-location-arrow"></i></button>
+                            <button class="input-group-text send_btn" type="submit" id="sendButton" onclick="send();"><i class="fas fa-location-arrow"></i></button>
                         </div>
                     </div>
                 </div>

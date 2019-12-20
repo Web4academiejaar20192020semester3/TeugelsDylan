@@ -62,50 +62,65 @@ public class Person {
 	public Person() {
 	}
 
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		if (firstName == null || firstName.trim().isEmpty()) {
+			throw new DomainException("No firstname given");
+		}
+		this.firstName = firstName;
 
+	}
+
+	public String getLastName() {
+		return lastName;
+	}
+	public void setLastName(String lastName) {
+		if (lastName == null || lastName.trim().isEmpty()) {
+			throw new DomainException("No last name given");
+		}
+		this.lastName = lastName;
+	}
+
+	public String getUserId() {
+		return userId;
+	}
 	public void setUserId(String userId) {
-		if (userId.isEmpty()) {
-			throw new IllegalArgumentException("No id given");
+		if (userId == null || userId.trim().isEmpty()) {
+			throw new DomainException("No id given");
 		}
 		String USERID_PATTERN = "^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
 				+ "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$";
 		Pattern p = Pattern.compile(USERID_PATTERN);
 		Matcher m = p.matcher(userId);
 		if (!m.matches()) {
-			throw new IllegalArgumentException("Email not valid");
+			throw new DomainException("Email not valid");
 		}
 		this.userId = userId;
-	}
-
-	public String getUserId() {
-		return userId;
 	}
 
 	public String getPassword() {
 		return password;
 	}
-
 	public boolean isCorrectPassword(String password) {
 		if (password.isEmpty()) {
-			throw new IllegalArgumentException("No password given");
+			throw new DomainException("No password given");
 		}
 		return getPassword().equals(hashPassword(password, getSalt()));
 	}
-
 	public void setPassword(String password) {
-		if (password.isEmpty()) {
-			throw new IllegalArgumentException("No password given");
+		if (password == null || password.trim().isEmpty()) {
+			throw new DomainException("No password given");
 		}
 		this.password = password;
 	}
-
 	public void setHashedPassword(String password) {
-		if (password.isEmpty()) {
-			throw new IllegalArgumentException("No password given");
+		if (password == null || password.trim().isEmpty()) {
+			throw new DomainException("No password given");
 		}
 		this.password = hashPassword(password);
 	}
-
 	private String hashPassword(String password) {
 		SecureRandom random = new SecureRandom();
 		byte[] seed = random.generateSeed(20);
@@ -115,7 +130,6 @@ public class Person {
 
 		return hashPassword(password, salt);
 	}
-
 	private String hashPassword(String password, String seed) {
 		String hashedPassword = null;
 		try {
@@ -131,75 +145,59 @@ public class Person {
 		}
 		return hashedPassword;
 	}
-
-	public void setSalt(String salt) {
-		this.salt = salt;
-	}
-
 	public String getSalt() {
 		return salt;
 	}
-
-	public String getFirstName() {
-		return firstName;
-	}
-
-	public void setFirstName(String firstName) {
-		if (firstName.isEmpty()) {
-			throw new IllegalArgumentException("No firstname given");
-		}
-		this.firstName = firstName;// firstName;
-
-	}
-
-	public String getLastName() {
-		return lastName;
-	}
-
-	public void setLastName(String lastName) {
-		if (lastName.isEmpty()) {
-			throw new IllegalArgumentException("No last name given");
-		}
-		this.lastName = lastName;
+	public void setSalt(String salt) {
+		this.salt = salt;
 	}
 
 	public String getStatus() {
 		return status;
 	}
-
 	public void setStatus(String status) {
+		if(status == null || status.trim().isEmpty()) throw new DomainException("No valid status");
 		this.status = status;
+	}
+
+	public String getGeslacht() { return geslacht; }
+	public void setGeslacht(String geslacht) {
+		if(geslacht == null || geslacht.trim().isEmpty()) throw new DomainException("No Gender Given");
+		else if(!geslacht.equals("Male") && !geslacht.equals("Female")) throw new DomainException("Not a valid Gender");
+		this.geslacht = geslacht;
+	}
+
+	public String getLeeftijd() { return leeftijd; }
+	public void setLeeftijd(String leeftijd) {
+		if(leeftijd == null || leeftijd.trim().isEmpty()) throw new DomainException("No Age given");
+		try{
+			int getal = Integer.parseInt(leeftijd);
+		}catch (NumberFormatException e){
+			throw new DomainException("Age is not a number");
+		}
+		this.leeftijd = leeftijd;
 	}
 
 	public ArrayList<Person> getFriends() {
 		return friends;
 	}
 
-	private void setGeslacht(String geslacht) {
-		this.geslacht = geslacht;
-	}
-
-	public String getGeslacht() { return geslacht; }
-
-	private void setLeeftijd(String leeftijd) {
-		this.leeftijd = leeftijd;
-	}
-
-	public String getLeeftijd() { return leeftijd; }
-
 	public void addFriend(Person person) {
 		if (person == null) {
-			throw new IllegalArgumentException("No person given");
+			throw new DomainException("No person given");
 		}
 		this.friends.add(person);
 	}
-
 	public boolean isFriend(Person person) {
 		boolean isFriend = false;
 		for (Person p : getFriends()) {
 			if (person.equals(p)) isFriend = true;
 		}
 		return isFriend;
+	}
+
+	public void initPerson(){
+		friends = new ArrayList<>();
 	}
 
 	@Override

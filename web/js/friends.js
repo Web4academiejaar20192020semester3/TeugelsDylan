@@ -59,13 +59,22 @@ function addFriend(){
     AddFriendRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     AddFriendRequest.send(info);
     AddFriendRequest.onreadystatechange = getDataAddFriend;
-    addFriendToggle();
+
 }
 
 function getDataAddFriend(){
     if(AddFriendRequest.status === 200){
-        if(AddFriendRequest.readyState = 4){
-            getFriends();
+        if(AddFriendRequest.readyState === 4){
+            var friend = AddFriendRequest.responseText;
+            if(friend === "Empty") alert("Fill in a friend's E-mail");
+            else if(friend === "SelfAdd") alert("You can't add yourself");
+            else if(friend === "UserDoesntExist") alert("User doesn't exist");
+            else if(friend === "UserIsAlreadyYourFriend") alert("User is already your friend");
+            else {
+                getFriends();
+                addFriendToggle();
+                document.getElementById("newFriend").value = "";
+            }
         }
     }
 }

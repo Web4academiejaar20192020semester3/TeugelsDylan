@@ -36,13 +36,16 @@
     <div class="user_info">
                     <span>${user.getFirstName()}</span>
                     <p id="status">${user.getStatus()}</p>
-                    <button class="myButton" onclick="getUserInfo('${user.getUserId()}')">Show Info</button>
+                    <button class="myButton" onclick='getUserInfo("${user.getUserId()}")'>Show Info</button>
                 </div>
             </div>
             <!-- SET STATUS -->
             <button class="myButton myMargin" onclick="setStatusToggle()" id="setStatusButton">Set Status</button>
             <div class="card-header hidden" id="setStatusInput">
-                <div class="input-group">
+                <button class="myButton" onclick="setStatusWithParameter('Online')" value="Online">Online</button>
+                <button class="myButton orangeButton" onclick="setStatusWithParameter('Away')" value="Away">Away</button>
+                <button class="myButton redButton" onclick="setStatusWithParameter('Offline')" value="Offline">Offline</button>
+                <div class="input-group" style="margin-top: 10px">
                     <input type="text" placeholder="Set new status" id="newStatus" class="form-control search">
                     <div class="input-group-prepend">
                         <input class="input-group-text search_btn" type="submit" onclick="setStatus()" value="Set Status">
@@ -66,7 +69,7 @@
             <div class="card-footer">
                 <form method="post" action="Controller?action=LogOut">
                     <p>
-                        <input class="myButton" type="submit" id="logoutbutton" value="Log Out">
+                        <input class="myButton redButton" type="submit" id="logoutbutton" value="Log Out">
                     </p>
                 </form>
             </div>
@@ -83,7 +86,7 @@
                         <div class="user_info">
                             <span id="chatter"></span>
                         </div>
-                        <button class="closeChatButton" onclick="toggleChatSection();">Close Chat</button>
+                        <button class="closeChatButton2" onclick="toggleChatSection();">Close Chat</button>
                     </div>
                 </div>
                 <!--CHAT MESSAGES-->

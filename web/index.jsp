@@ -2,7 +2,7 @@
 		 pageEncoding="UTF-8"%>
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -17,6 +17,7 @@
 
 	<link rel="stylesheet" type="text/css" href="css/util.css">
 	<link rel="stylesheet" type="text/css" href="css/main.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>
 <body>
 	
@@ -28,7 +29,7 @@
 				</span>
 				<form class="login100-form validate-form p-b-33 p-t-5" method="post" action="Controller?action=LogIn">
 					<c:if test="${errors.size()>0 }">
-						<div class="danger">
+						<div class="alert-danger">
 							<ul>
 								<c:forEach var="error" items="${errors }">
 									<li>${error }</li>
@@ -37,7 +38,7 @@
 						</div>
 					</c:if>
 					<div class="wrap-input100">
-						<input class="input100" type="text" name="email" placeholder="E-Mail">
+						<input class="input100" type="text" name="email" placeholder="E-Mail" value="${fn:escapeXml(prevEmail)}">
 						<span class="focus-input100" data-placeholder="&#xe82a;"></span>
 					</div>
 

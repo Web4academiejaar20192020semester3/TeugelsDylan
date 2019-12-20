@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 import domain.Person;
 import domain.PersonService;
 
-public class LogIn extends SynchroonRedirectRequestHandler {
+public class LogIn extends SynchroonRequestHandler {
 
 	@Override
 	public String handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -21,6 +21,8 @@ public class LogIn extends SynchroonRedirectRequestHandler {
 		String email = request.getParameter("email");
 		if (email == null || email.isEmpty()) {
 			errors.add("No email given");
+		}else{
+			request.setAttribute("prevEmail", email);
 		}
 		
 		String password = request.getParameter("password");
@@ -34,6 +36,7 @@ public class LogIn extends SynchroonRedirectRequestHandler {
 			if (person != null) {
 				createSession(person, request, response);
 				person.setStatus("Online");
+				response.sendRedirect(request.getContextPath() + "/chatApp.jsp");
 			} else {
 				errors.add("No valid email/password");
 			}

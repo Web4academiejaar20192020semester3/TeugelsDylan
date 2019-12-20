@@ -24,13 +24,25 @@ function setStatus(){
     setStatusRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
     setStatusRequest.send(info);
     setStatusRequest.onreadystatechange = getDataSetStatus;
-    setStatusToggle();
+}
+
+function setStatusWithParameter(status){
+    var info = "newStatus=" +  status;
+    setStatusRequest.open("POST", "Controller?action=SetStatus", true);
+    setStatusRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    setStatusRequest.send(info);
+    setStatusRequest.onreadystatechange = getDataSetStatus;
 }
 
 function getDataSetStatus() {
     if(setStatusRequest.status === 200){
         if(setStatusRequest.readyState === 4){
-            getStatus();
+            if(setStatusRequest.responseText === "Empty") alert("Fill in a status");
+            else{
+                document.getElementById("newStatus").value = "";
+                getStatus();
+            }
+            setStatusToggle();
         }
     }
 }
@@ -44,4 +56,8 @@ function getUserInfo(friend){
 function setStatusToggle(){
     $("#setStatusButton").toggle('hidden');
     $("#setStatusInput").toggle('hidden');
+}
+
+function dropdownStatus() {
+    document.getElementById("newStatus").classList.toggle("show");
 }

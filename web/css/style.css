@@ -145,7 +145,7 @@ body,html{
     cursor: pointer;
     margin-right: 20px;
 }
-.msg_cotainer{
+.msg_cotainer {
     margin-top: auto;
     margin-bottom: auto;
     margin-left: 10px;
@@ -163,7 +163,8 @@ body,html{
     background-color: #78e08f;
     padding: 10px;
     position: relative;
-    max-width: 50%;
+    max-width: 50%
+
 }
 .msg_time{
     position: absolute;
@@ -241,6 +242,29 @@ body,html{
 
 }
 
+.closeChatButton2{
+    box-shadow: 0px 10px 14px -7px darkred;
+    background: red;
+    border-radius:4px;
+    border:1px solid darkred;
+    display:inline-block;
+    cursor:pointer;
+    color:#ffffff;
+    font-family:Arial;
+    font-size:13px;
+    font-weight:bold;
+    padding:6px 12px;
+    text-decoration:none;
+    text-shadow:0px 1px 0px darkred;
+    margin-top: auto;
+    margin-bottom: auto;
+    margin-right: 10px;
+    position: absolute;
+    right: 10px;
+    border: none;
+    cursor: pointer;
+}
+
 .myMargin{
     margin: 10px;
 }
@@ -260,12 +284,101 @@ body,html{
     text-decoration:none;
     text-shadow:0px 1px 0px #5b8a3c;
 }
-.myButton:hover {
-    background: #72b352 linear-gradient(to bottom, #72b352 5%, #77b55a 100%);
-}
+
 .myButton:active {
     position:relative;
     top:1px;
 }
+
+.orangeButton{
+    box-shadow: 0px 10px 14px -7px darkorange;
+    background: orange;
+    border:1px solid darkorange;
+}
+
+.redButton{
+    box-shadow: 0px 10px 14px -7px darkred;
+    background: red;
+    border:1px solid darkred;
+}
+
+.alert-danger {
+    padding: 0.5em;
+    margin: 5px 10px 0px ;
+    background-color: #f2dede;
+    border: 1px solid #b94a48;
+    color: #b94a48;
+    border-radius: 3px;
+    width: available;
+    box-sizing: border-box;
+}
+.alert-danger ul {
+    list-style-type: none;
+}
+
+.blog-tables {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 90%;
+    margin: 5px 20px 10px;
+    border-collapse: collapse;
+    border-radius: 1em;
+    overflow: hidden;
+}
+
+.blog-tables td, .blog-tables th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+.blog-tables tr:nth-child(even){background-color: #f2f2f2;}
+
+.blog-tables tr:hover {background-color: #ddd;}
+
+.blog-tables th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background: #d41872;
+    color: white;
+}
+
+#myInput {
+    box-sizing: border-box;
+    background-position: 14px 12px;
+    background-repeat: no-repeat;
+    font-size: 16px;
+    padding: 14px 20px 12px 45px;
+    border: none;
+    border-bottom: 1px solid #ddd;
+}
+
+#myInput:focus {outline: 3px solid #ddd;}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f6f6f6;
+    min-width: 230px;
+    overflow: auto;
+    border: 1px solid #ddd;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown a:hover {background-color: #ddd;}
+
+.show {display: block;}
 
 

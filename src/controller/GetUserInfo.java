@@ -12,7 +12,6 @@ import java.io.IOException;
 public class GetUserInfo extends AsynchroonRequestHandler {
     @Override
     public void handleRequest(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        System.out.println(request.getParameter("userInfo"));
         Person person = getPersonService().getPerson(request.getParameter("userInfo"));
 
         try {

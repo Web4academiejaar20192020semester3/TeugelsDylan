@@ -49,9 +49,6 @@ public class Controller extends HttpServlet {
 				} else if (handler instanceof SynchroonRequestHandler) {
 					SynchroonRequestHandler h = (SynchroonRequestHandler) handler;
 					destination = h.handleRequest(request, response);
-				} else if (handler instanceof SynchroonRedirectRequestHandler) {
-					SynchroonRedirectRequestHandler h = (SynchroonRedirectRequestHandler) handler;
-					destination = h.handleRequest(request, response);
 				}
 			} catch (NotAuthorizedException exc) {
 				List<String> errors = new ArrayList<String>();
@@ -61,10 +58,12 @@ public class Controller extends HttpServlet {
 			}
 		}
 		if (handler == null || handler instanceof SynchroonRequestHandler) {
-			RequestDispatcher view = request.getRequestDispatcher(destination);
-			view.forward(request, response);
-		}else if(handler instanceof SynchroonRedirectRequestHandler){
-			response.sendRedirect(request.getContextPath() + "/" + destination);
+			try{
+				RequestDispatcher view = request.getRequestDispatcher(destination);
+				view.forward(request, response);
+			}catch (IllegalStateException e){
+
+			}
 		}
 	}
 
